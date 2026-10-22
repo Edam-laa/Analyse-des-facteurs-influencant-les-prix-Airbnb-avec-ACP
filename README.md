@@ -1,183 +1,79 @@
-# 🏡 Airbnb Paris — Analyse Multivariée & ACP
+# Paris Airbnb — Multivariate Analysis & Principal Component Analysis
+**Exploratory Data Analysis · PCA · Python · Statistical Interpretation**
 
-<p align="center">
-  <img src="outputs/individuals_pc1_pc2.png" width="600">
-</p>
+An academic exploration of Paris Airbnb listing data using **Principal Component Analysis (PCA)** to study relationships between listing characteristics and to visualize the structure of a multidimensional dataset.
 
-<p align="center">
-  <b>Exploration avancée des données Airbnb à Paris à travers une Analyse en Composantes Principales (ACP)</b>
-</p>
+> **Project scope:** unsupervised exploratory/statistical analysis, **not a validated Airbnb price-prediction model**. PCA components do not by themselves demonstrate causal drivers of prices.
 
----
+## Analysis workflow
 
-## 🚀 Pourquoi ce projet ?
-
-Dans un marché aussi dynamique qu’Airbnb, comprendre **les facteurs qui influencent les prix et les performances des logements** est essentiel.
-
-Ce projet propose une approche basée sur la **statistique multivariée** pour :
-
-* 🔍 Révéler les relations cachées entre les variables
-* 📉 Réduire la complexité des données
-* 📊 Identifier les dimensions clés du marché Airbnb
-
----
-
-## 📊 Aperçu des résultats
-
-### 🔹 Matrice de corrélation
-
-<p align="center">
-  <img src="outputs/correlation_matrix.png" width="500">
-</p>
-
-### 🔹 Projection ACP (PC1 vs PC2)
-
-<p align="center">
-  <img src="outputs/individuals_pc1_pc2_by_room_type.png" width="500">
-</p>
-
-### 🔹 Contributions des variables
-
-<p align="center">
-  <img src="outputs/loadings_pc1_pc2.png" width="500">
-</p>
-
-### 🔹 Variance expliquée
-
-<p align="center">
-  <img src="outputs/variance_explained.png" width="500">
-</p>
-
----
-
-## 🧠 Méthodologie
-
-Le projet suit une approche rigoureuse :
-
-### 1. 🔧 Préparation des données
-
-* Nettoyage
-* Gestion des valeurs manquantes
-* Sélection des variables pertinentes
-
-### 2. 📈 Analyse exploratoire
-
-* Statistiques descriptives
-* Visualisation des distributions
-* Analyse des corrélations
-
-### 3. 📉 Analyse en Composantes Principales (ACP)
-
-* Standardisation des données
-* Calcul des composantes principales
-* Interprétation des axes factoriels
-
-### 4. 📊 Visualisation
-
-* Projection des individus
-* Contribution des variables
-* Variance expliquée
-
----
-
-## 💡 Insights clés
-
-* 📌 Certaines variables sont fortement corrélées avec le prix
-* 📌 L’ACP permet de capturer l’essentiel de l’information avec peu de dimensions
-* 📌 Des groupes de logements distincts apparaissent clairement
-* 📌 Le type de logement influence fortement la structure des données
-
----
-
-## 🛠️ Stack technique
-
-| Outil                | Utilisation         |
-| -------------------- | ------------------- |
-| Python 🐍            | Analyse des données |
-| Pandas               | Manipulation        |
-| NumPy                | Calcul numérique    |
-| Seaborn / Matplotlib | Visualisation       |
-| Scikit-learn         | ACP                 |
-
----
-
-## 📂 Structure du projet
-
-```id="7q2n9x"
-airbnb-paris-pca-analysis/
-│
-├── data/                # Dataset
-├── notebooks/           # Notebook principal
-├── outputs/             # Visualisations générées
-├── tables/              # Tables ACP
-├── report/              # Rapport final (PDF + LaTeX)
-│
-├── README.md
-├── requirements.txt
-└── .gitignore
+```mermaid
+flowchart LR
+    A["Paris Airbnb CSV"] --> B["Data cleaning<br/>numeric variable selection"]
+    B --> C["Exploratory analysis<br/>correlations"]
+    C --> D["Feature scaling"]
+    D --> E["PCA decomposition"]
+    E --> F["Explained variance<br/>loadings & projections"]
+    F --> G["Interpretation<br/>report and visualizations"]
 ```
 
----
+This is a conceptual summary of the notebook's reported analytical method, not a separate production workflow.
 
-## ⚙️ Installation
+## Selected visual results
 
-```bash id="j6mqz6"
-git clone https://github.com/Edam-laa/airbnb-paris-pca-analysis.git
-cd airbnb-paris-pca-analysis
-pip install -r requirements.txt
+### Correlations
+![Correlation matrix of analyzed attributes](outputs/correlation_matrix.png)
+
+### Listing projections
+![Listings projected onto principal components](outputs/individuals_pc1_pc2_by_room_type.png)
+
+### Component loadings
+![Feature loadings on PC1 and PC2](outputs/loadings_pc1_pc2.png)
+
+### Explained variance
+![Explained variance by principal component](outputs/composantes_principales_variance_explique.png)
+
+[View cumulative explained variance](outputs/composant_peincipale_variance_cumule.png) · [View PC1–PC3 loadings](outputs/loadings_pc1_pc3.png)
+
+The images are **existing project artifacts**. Their values have not been independently rerun during this README update; consult the notebook and tables for definitions and interpretation. Avoid interpreting visual grouping as predictive accuracy.
+
+## Files and evidence
+
+| Path | Content |
+| --- | --- |
+| [`notebooks/airbnb_acp_analysis.ipynb`](notebooks/airbnb_acp_analysis.ipynb) | Data exploration and PCA workflow |
+| [`data/paris_airbnb.csv`](data/paris_airbnb.csv) | Dataset included in the repository |
+| [`outputs/`](outputs/) | Existing statistical plots |
+| [`tables/loadings_table.csv`](tables/loadings_table.csv) | Exported PCA loadings |
+| [`tables/loadings_pc1_pc3_table.csv`](tables/loadings_pc1_pc3_table.csv) | Loadings for selected components |
+| [`tables/explained_variance_table.xlsx`](tables/explained_variance_table.xlsx) | Exported explained-variance table |
+| [`report/rapport_final_acp_airbnb_paris.pdf`](report/rapport_final_acp_airbnb_paris.pdf) | Academic report (French) |
+
+## Run the analysis
+
+```bash
+git clone https://github.com/Edam-laa/Analyse-des-facteurs-influencant-les-prix-Airbnb-avec-ACP.git
+cd Analyse-des-facteurs-influencant-les-prix-Airbnb-avec-ACP
+python -m venv .venv
+# Activate your virtual environment, then:
+python -m pip install -r requirements.txt
+jupyter notebook notebooks/airbnb_acp_analysis.ipynb
 ```
 
----
+The notebook and CSV are provided, but full execution and dependency compatibility have **not been revalidated** in this portfolio update. If notebook cells reference environment-specific paths, adjust them to the local `data/paris_airbnb.csv` location. No metrics are claimed without a documented reproduction run.
 
-## ▶️ Exécution
+## Methodological notes
 
-```bash id="r8axu4"
-jupyter notebook
-```
+- **Standardization:** units and scales matter because PCA is variance-based.
+- **Interpretation:** loadings describe contributions to component directions; sample projections show relative positions within that transformed space.
+- **Explained variance:** helps assess information retained per component, but does not measure forecast accuracy.
+- **Constraints:** outliers, missing values, categorical encodings, sampling bias, and variable selection can substantially change PCA interpretation.
+- **No causality claim:** relationships observed in listing data do not establish the causal effect of an amenity on pricing.
 
-Puis ouvrir le notebook principal dans le dossier `notebooks/`.
+## Potential improvements
 
----
+Add an automated notebook execution check, explicitly document each cleaning decision, verify the original dataset license/source, and compare PCA interpretation against targeted supervised analyses if the research question shifts toward price prediction.
 
-## 📁 Données
+## Credits
 
-Le dataset utilisé contient des informations sur :
-
-* prix 💰
-* localisation 📍
-* type de logement 🏠
-* disponibilité 📅
-* caractéristiques des propriétés
-
----
-
-## 📄 Rapport complet
-
-Le rapport détaillé est disponible ici :
-
-📄 `report/rapport_final_acp_airbnb_paris.pdf`
-
----
-
-## 🎯 Objectif professionnel
-
-Ce projet démontre :
-
-* ✔ Maîtrise de l’analyse exploratoire
-* ✔ Compréhension des méthodes statistiques avancées
-* ✔ Capacité à interpréter et visualiser des données complexes
-* ✔ Rigueur dans la structuration d’un projet data
-
--
-
-## ⭐ Support
-
-Si ce projet t’a aidé ou inspiré :
-
-👉 N’hésite pas à **mettre une étoile ⭐ sur le repo**
-
----
-
-<p align="center">
-  <i>Projet réalisé dans le cadre d’une étude en statistique multivariée</i>
-</p>
+Academic multivariate statistics project; detailed analysis and methodological context are available in the linked report.
